@@ -5,46 +5,30 @@ import {
   VStack,
   Skeleton,
   HStack,
+  Input,
   useColorModeValue,
   NativeBaseProvider,
+  Icon,
   Center
 } from 'native-base'
 import AnimatedColorBox from '../components/animated-color-box'
 import Navbar from '../components/navbar'
 import Masthead from '../components/masthead'
-import SkeletonContent from 'react-native-skeleton-content';
+import { MaterialIcons } from "@expo/vector-icons";
 
 
-const Load = () => {
-  return  <Center w="100%">
-      <HStack key={null} w="90%" maxW="400" borderWidth="1" space={8} rounded="md" _dark={{
-      borderColor: "coolGray.500"
-    }} _light={{
-      borderColor: "coolGray.200"
-    }} p="4">
-        <Skeleton flex="1" h="150" rounded="md" startColor="coolGray.100" />
-        <VStack flex="3" space="4">
-          <Skeleton startColor="amber.300" />
-          <Skeleton.Text />
-          <HStack space="2" alignItems="center">
-            <Skeleton size="5" rounded="full" />
-            <Skeleton h="3" flex="1" rounded="full" />
-            <Skeleton h="3" flex="1.5" rounded="full" startColor="indigo.300" />
-          </HStack>
-          <HStack space="2" alignItems="center">
-            <Skeleton size="5" rounded="full" />
-            <Skeleton h="3" flex="1" rounded="full" />
-            <Skeleton h="3" flex="1" rounded="full" startColor="indigo.300" />
-          </HStack>
-          <HStack space="2" alignItems="center">
-            <Skeleton size="5" rounded="full" />
-            <Skeleton h="3" flex="1" rounded="full" />
-            <Skeleton h="3" flex="2" rounded="full" startColor="indigo.300" />
-          </HStack>
-        </VStack>
-      </HStack>
-    </Center>;
-    
+const Pizda = () => {
+  const [show, setShow] = React.useState(false);
+  return <HStack space={4} w="100%" alignItems="center">
+      <Input w={{
+      base: "75%",
+      md: "25%"
+    }} InputLeftElement={<Icon as={<MaterialIcons name="person" />} size={5} ml="2" color="muted.400" />} placeholder="Name" />
+      <Input w={{
+      base: "75%",
+      md: "25%"
+    }} type={show ? "text" : "password"} InputRightElement={<Icon as={<MaterialIcons name={show ? "visibility" : "visibility-off"} />} size={5} mr="2" color="muted.400" onPress={() => setShow(!show)} />} placeholder="Password" />
+    </HStack>;
 };
 
 const SettingsScreen = () => {
@@ -72,7 +56,7 @@ const SettingsScreen = () => {
 
         <NativeBaseProvider>
             <Center flex={1} px="3">
-                <Load />
+                <Pizda/>
             </Center>
           </NativeBaseProvider>
           
